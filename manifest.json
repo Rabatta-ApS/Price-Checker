@@ -1,0 +1,21 @@
+{
+  "name": "Rabatta - PriceChecker",
+  "version": "1.0",
+  "description": "A tool for checking when prices are changed on webshops",
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "storage"
+  ],
+  "manifest_version": 2,
+  "browser_action": {
+    "default_title": "Rabatta - PriceChecker",
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}
