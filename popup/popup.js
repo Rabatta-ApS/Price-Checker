@@ -1,15 +1,19 @@
 
 chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
   const activeTab = tabs[0];
-  const domain = convertDomain(activeTab.url);
+  const url = activeTab.url;
+  console.log(url);
+  const domain = convertDomain(url);
   document.getElementById('domain').value = domain;
 
   document.getElementById('btnCheck').addEventListener('click', () => {
     const selector = document.getElementById('selector').value;
-  
-    let toSet = {};
-    toSet[domain] = selector;
-    chrome.storage.sync.set(toSet);
+
+    setStorage(domain, selector);
+
+    chrome.storage.sync.get(url, result => {
+      console.log(result.url);
+    });
   });
 });
 

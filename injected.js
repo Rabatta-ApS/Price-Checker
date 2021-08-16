@@ -1,7 +1,12 @@
-const domain = convertDomain(window.location.href);
+const url = window.location.href;
+console.log(url);
+const domain = convertDomain(url);
 
-chrome.storage.sync.get([domain], function(result) {
-  const selector = result[domain];
+getStorage(domain).then(value => {
+  const selector = value;
+  const price = parseInt(document.querySelector(selector).textContent.replace(".", ""));
 
-  console.log(parseInt(document.querySelector(selector).textContent.replace(".", "")));
+  console.log(price);
+
+  setStorage(url, price);
 });
