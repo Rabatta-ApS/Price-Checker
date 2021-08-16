@@ -6,7 +6,21 @@ getStorage(domain).then(value => {
   const selector = value;
   const price = parseInt(document.querySelector(selector).textContent.replace(".", ""));
 
-  console.log(price);
+  getStorage(url).then(value => {
+    let toSave = value;
 
-  setStorage(url, price);
+    if (toSave != null) {
+      toSave.curPrice = price;
+    } else {
+      toSave = {
+        ogPrice: price,
+        curPrice: price
+      }
+    }
+    
+    console.log(toSave);
+  
+    setStorage(url, toSave);
+  });
+
 });

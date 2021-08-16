@@ -10,10 +10,14 @@ chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     const selector = document.getElementById('selector').value;
 
     setStorage(domain, selector);
+  });
 
-    chrome.storage.sync.get(url, result => {
-      console.log(result.url);
-    });
+  getStorage(url).then(value => {
+    const ogPrice = document.getElementById('ogPrice');
+    const curPrice = document.getElementById('curPrice');
+
+    ogPrice.textContent = value.ogPrice;
+    curPrice.textContent = value.curPrice;
   });
 });
 
